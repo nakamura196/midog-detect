@@ -566,3 +566,15 @@ Python 側は GPU サーバの `runs/yolo26x-midog/points_test.json`（`out/py-p
   `node web/scripts/check.mjs "http://localhost:5197/?slide=345" out/web-wasm-q95-345.json --wasm` で取り直せる
   （GPU との差が小さければ (2)、大きければ (1)）
 - `check.mjs` は、タイルを読み続けるためページの読み込み完了を待つと時間切れになることがあったので、待つのを通信の開始までにした
+
+## 2026-10-16 公開した
+
+- 画面: https://nakamura196.github.io/midog-detect/ （GitHub Pages。`.github/workflows/pages.yml` で web/ を書き出して配る）
+- モデル: https://huggingface.co/nakamura196/yolo26x-midog-onnx （32 ビット版 223MB・16 ビット版 112MB・設定の JSON。説明は英語）
+- コード: https://github.com/nakamura196/midog-detect （公開）
+- ライセンスは AGPL-3.0。重みが Ultralytics YOLO から作ったものなので、重みを配るならコードも同じ条件で公開する必要がある。
+  画像のタイルと正解は MIDOG++ から作ったもので CC0（`web/public/iiif`・`web/public/data`、3 標本で 80MB を git に入れた）
+- 確かめたこと: Hugging Face のファイルは別のサイトから読める（CORS の許可あり）。公開した画面で 268 を推論し、
+  成績は手元と同じ（予測 194・当たり 149・誤検出 45・見逃し 14、F1 0.835）。Mac が重い時だったので 1 切片 0.93 秒・計 122 秒
+- Hugging Face の説明の `datasets:` に「MIDOG++」と書くと、Hugging Face 上のデータの名前ではないので登録を断られる。外した
+- 最初の push は Pages を有効にする前だったので、その回の配布は取り消され、手動で流し直した
