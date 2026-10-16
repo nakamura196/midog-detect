@@ -1,0 +1,21 @@
+# env / secret files
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials.json
+.npmrc
+
+# 学習の生成物（重みは Hugging Face に置く）
+/data/
+/runs/
+*.pt
+*.onnx
+.venv/
+__pycache__/
+
+.DS_Store
+.idea/
+.vscode/settings.json
+/out/

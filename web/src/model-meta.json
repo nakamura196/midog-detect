@@ -1,0 +1,10 @@
+{
+ "imgsz": 640,
+ "names": [
+  "mitotic_figure",
+  "imposter"
+ ],
+ "threshold": 0.39,
+ "threshold_source": "runs/yolo26x-midog/test_points.json",
+ "source": "runs/yolo26x-midog/weights/best.pt"
+}

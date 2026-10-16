@@ -1,0 +1,7 @@
+node_modules/
+dist/
+# モデルは git に入れない（手元は ../out/ への symlink。公開版は Hugging Face から読む）
+public/models/
+# 標本のタイル（public/iiif/）と正解（public/data/）は scripts/make_demo.py で作り、公開のため git に入れる。
+# dzsave が書く元の画像の情報は要らない
+public/iiif/vips-properties.xml

@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>分裂像の検出</title>
+    <meta name="description" content="病理画像の分裂像を、ブラウザの中で YOLO26x（ONNX）により検出する試作。画像は IIIF のタイルから読む。" />
+  </head>
+  <body>
+    <main id="viewer"></main>
+    <canvas id="overlay"></canvas>
+    <aside id="panel">
+      <h1>分裂像の検出</h1>
+      <p class="sub">ブラウザの中で推論（YOLO26x・ONNX）。画像は IIIF のタイルから読む</p>
+
+      <section>
+        <label class="pick">標本
+          <select id="pick">
+            <option value="006">006 乳がん（ヒト）・分裂像 6</option>
+            <option value="268">268 リンパ腫（イヌ）・分裂像 163</option>
+            <option value="345">345 肥満細胞腫（イヌ）・分裂像 191</option>
+          </select>
+        </label>
+        <div id="slide" class="kv"></div>
+      </section>
+
+      <section>
+        <div class="row">
+          <button id="run" disabled>モデルを読み込み中…</button>
+          <span id="backend" class="muted"></span>
+        </div>
+        <progress id="bar" max="1" value="0"></progress>
+        <div id="status" class="muted"></div>
+      </section>
+
+      <section>
+        <label class="slider">
+          しきい値 <output id="thr-v"></output>
+          <input id="thr" type="range" min="0.05" max="0.95" step="0.01" />
+        </label>
+        <div id="thr-note" class="muted"></div>
+        <div class="checks">
+          <label><input id="show-pred" type="checkbox" checked /> 予測</label>
+          <label><input id="show-truth" type="checkbox" checked /> 正解</label>
+          <label><input id="show-imp" type="checkbox" /> 似た別物</label>
+        </div>
+      </section>
+
+      <section>
+        <div id="result"></div>
+        <div id="legend" class="legend"></div>
+      </section>
+
+      <section class="list-wrap">
+        <ol id="list"></ol>
+      </section>
+
+      <footer>
+        <p><strong>研究用の試作です。診断には使えません。</strong></p>
+        <p>画像と正解: <a href="https://doi.org/10.1038/s41597-023-02327-4" target="_blank" rel="noopener">MIDOG++</a>（CC0）。
+          判定は配布元と同じく、分裂像の中心が 7.5µm 以内なら正解。</p>
+        <p><a href="https://github.com/nakamura196/midog-detect" target="_blank" rel="noopener">コード</a>・<a href="https://huggingface.co/nakamura196/yolo26x-midog-onnx" target="_blank" rel="noopener">モデル</a>（AGPL-3.0）。中村 覚（東京大学）</p>
+      </footer>
+    </aside>
+    <script type="module" src="./src/main.ts"></script>
+  </body>
+</html>

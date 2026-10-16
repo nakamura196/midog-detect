@@ -1,0 +1,22 @@
+{
+  "name": "midog-web",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "license": "AGPL-3.0-only",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "lint": "tsc --noEmit"
+  },
+  "dependencies": {
+    "openseadragon": "6.1.1"
+  },
+  "devDependencies": {
+    "onnxruntime-web": "1.26.0",
+    "playwright": "1.63.0",
+    "typescript": "6.0.3",
+    "vite": "8.3.0"
+  }
+}
