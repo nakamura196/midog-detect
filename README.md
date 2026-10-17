@@ -27,12 +27,12 @@ python3 scripts/eval_points.py runs/yolo11x-midog/weights/best.pt  # 配布元�
 ```
 ~/git/ndl/ndl-layout/.venv/bin/python scripts/export_onnx.py runs/yolo26x-midog/weights/best.pt out/midog-yolo26x.onnx
 ~/git/ndl/ndl-layout/.venv/bin/python scripts/check_onnx.py runs/yolo26x-midog/weights/best.pt out/midog-yolo26x.onnx out/midog-yolo26x-fp16.onnx
-python3 scripts/make_demo.py data/raw/006.tiff   # 元の TIFF（figshare）→ web/public/iiif/006/ と正解の点（268・345 も同じ）
+python3 scripts/make_demo.py data/raw/006.tiff   # 元の TIFF（figshare）→ web/public/iiif/006/ と正解の点（ほかの 7 標本も同じ）
 cd web && npm ci && npm run dev                  # public/models/ は ../out/ への symlink
 node scripts/check.mjs http://localhost:5173/ ../out/web-points-006.json --wasm   # ヘッドレスで最後まで流す
 ```
 
-- `?slide=268` で標本を選ぶ（006 乳がん・268 リンパ腫・345 肥満細胞腫。画面の欄からも選べる）
+- `?slide=268` で標本を選ぶ（test の 8 標本: 006・100 乳がん、220 肺がん、268 リンパ腫、345 肥満細胞腫、353 神経内分泌腫瘍、458 軟部肉腫、552 黒色腫。画面の欄からも選べる）
 - `?info=<IIIF の info.json>` で別の画像も読める（原寸のタイルがあれば、レベル 0 でも画像サーバでもよい）
 - 研究用の試作。診断には使えない
 

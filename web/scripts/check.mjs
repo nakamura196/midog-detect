@@ -16,7 +16,7 @@ const tick = setInterval(async () => console.log("[status]", await page.textCont
 await page.waitForFunction(() => !document.getElementById("run").disabled || /エラー/.test(document.getElementById("status").textContent), null, { timeout: 600_000 });
 console.log("backend:", await page.textContent("#backend"));
 await page.click("#run");
-await page.waitForFunction(() => window.__midog.done.size > 0 && !window.__midog.running, null, { timeout: 1_800_000, polling: 2000 });
+await page.waitForFunction(() => window.__midog.done.size > 0 && !window.__midog.running, null, { timeout: 7_200_000, polling: 2000 });
 console.log(await page.textContent("#status"));
 console.log((await page.textContent("#result")).replace(/\s+/g, " "));
 const preds = await page.evaluate(() => window.__midog.preds);
