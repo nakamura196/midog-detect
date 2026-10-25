@@ -17,6 +17,6 @@
     "onnxruntime-web": "1.26.0",
     "playwright": "1.63.0",
     "typescript": "6.0.3",
-    "vite": "8.3.0"
+    "vite": "^8.3.5"
   }
 }
